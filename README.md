@@ -3,13 +3,14 @@
 ## Overview
 This is a [parser plugin](http://docs.fluentd.org/articles/parser-plugin-overview) for fluentd. It is **INCOMPATIBLE WITH FLUENTD v0.10.45 AND BELOW.**
 
-
-It was created for the purpose of modifying [**good.js**](https://github.com/hapijs/good) logs
-before storing them in Elasticsearch. It may not be useful for any other purpose, but be creative.
+It was forker from [fluent-plugin-json-transform](https://github.com/mjourard/fluent-plugin-json-transform) plugin and has the following fixes:
+- Fixing issue when you can't use the same filter plugin multiple times with different scripts.
+**Explanation:** there was a sctrict rule that script class should be named as `JSONTransformer`. And when you defined a more than 1 script with different logic, anyway those classes should be named as `JSONTransformer`. As a result you have several scripts with different logic but with the same name.
+**Fix:** define new parameter called `class_name` where you can define a custom class name and this is allow you to have a lot of scripts with different class names.
 
 ## Installation
 ```bash
-gem install fluent-plugin-json-transform_ex --version 0.0.1
+gem install fluent-plugin-json-transform_ex --version 0.1.0
 ```
 
 ## Configuration
