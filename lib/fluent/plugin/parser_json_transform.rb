@@ -38,7 +38,7 @@ module Fluent
         return nil, @transformer.transform(raw_json)
       end
     end
-  register_template("json_transform", Proc.new { JSONTransformParser.new })
+  register_template("json_transform_ex", Proc.new { JSONTransformParser.new })
   end
 end
 

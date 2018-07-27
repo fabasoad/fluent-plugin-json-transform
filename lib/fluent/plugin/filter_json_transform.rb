@@ -1,6 +1,6 @@
 module Fluent
   class JSONTransformFilter < Filter
-    Fluent::Plugin.register_filter('json_transform', self)
+    Fluent::Plugin.register_filter('json_transform_ex', self)
 
     DEFAULTS = [ 'nothing', 'flatten' ]
     DEFAULT_CLASS_NAME = 'JSONTransformer'
