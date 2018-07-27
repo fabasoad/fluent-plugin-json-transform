@@ -9,7 +9,7 @@ before storing them in Elasticsearch. It may not be useful for any other purpose
 
 ## Installation
 ```bash
-gem install fluent-plugin-json-transform
+gem install fluent-plugin-json-transform_ex --version 0.0.1
 ```
 
 ## Configuration

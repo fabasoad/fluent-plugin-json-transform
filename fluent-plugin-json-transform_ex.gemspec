@@ -1,12 +1,12 @@
 # coding: utf-8
 Gem::Specification.new do |spec|
-  spec.name          = "fluent-plugin-json-transform"
+  spec.name          = "fluent-plugin-json-transform_ex"
   spec.version       = "0.0.1"
-  spec.authors       = ["Grayson Chao"]
-  spec.email         = ["grayson.chao@gmail.com"]
+  spec.authors       = ["Grayson Chao", "Yevhen Fabizhevskyi"]
+  spec.email         = ["grayson.chao@gmail.com", "fabasoad@gmail.com"]
   spec.description   = %q{Input parser plugin which allows arbitrary transformation of input JSON}
   spec.summary       = %q{Input parser plugin which allows arbitrary transformation of input JSON}
-  spec.homepage      = "https://github.com/graysonc/fluent-plugin-json-transform"
+  spec.homepage      = "https://github.com/fabasoad/fluent-plugin-json-transform_ex"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
