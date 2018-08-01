@@ -5,8 +5,12 @@ This is a [parser plugin](http://docs.fluentd.org/articles/parser-plugin-overvie
 
 It was forker from [fluent-plugin-json-transform](https://github.com/mjourard/fluent-plugin-json-transform) plugin and has the following fixes:
 - Fixing issue when you can't use the same filter plugin multiple times with different scripts.
+
 **Explanation:** there was a sctrict rule that script class should be named as `JSONTransformer`. And when you defined a more than 1 script with different logic, anyway those classes should be named as `JSONTransformer`. As a result you have several scripts with different logic but with the same name.
+
 **Fix:** define new parameter called `class_name` where you can define a custom class name and this is allow you to have a lot of scripts with different class names.
+
+- Adding `params` section with key-value pairs which can be passed to user script for usage.
 
 ## Installation
 ```bash
@@ -21,6 +25,10 @@ gem install fluent-plugin-json-transform_ex --version 0.1.0
   transform_script [nothing|flatten|custom]
   script_path "/home/grayson/transform_script.rb" # ignored if transform_script != custom
   class_name "CustomJSONTransformer" # [optional] default value is "JSONTransformer", ignored if transform_script != custom
+  <params> # any parameters which will be passed to "transform" method of class_name class
+    key1 value1
+    key2 value2
+  </params>
 </source>
 ```
 
@@ -65,6 +73,10 @@ If you want to flatten your json after doing other parsing from the original sou
   transform_script [nothing|flatten|custom]
   script_path "/home/grayson/transform_script.rb" # ignored if transform_script != custom
   class_name "CustomJSONTransformer" # [optional] default value is "JSONTransformer", ignored if transform_script != custom
+  <params> # any parameters which will be passed to "transform" method of class_name class
+    key1 value1
+    key2 value2
+  </params>
 </filter>
 ```
 
@@ -76,7 +88,7 @@ The transformer class should have an instance method `transform` which takes a R
 ```ruby
 # lib/transform/flatten.rb
 class JSONTransformer # or any class name defined in class_name parameter
-  def transform(json)
+  def transform(json, params = {}) # params - [optional] passed parameters from config
     return flatten(json, "")
   end
 

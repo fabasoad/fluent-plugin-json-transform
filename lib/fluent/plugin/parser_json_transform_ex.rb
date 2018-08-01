@@ -12,6 +12,18 @@ module Fluent
       def configure(conf)
         @transform_script = conf['transform_script']
 
+        @params = {}
+        $log.info("Searching for 'params'...")
+        conf.elements.each do |element|
+          if element.name == 'params'
+            element.to_hash.each do |key, value|
+              @params[key] = value
+            end
+            $log.info("'params' section found: #{@params}") if @params.length > 0
+          end
+        end
+        $log.info("'params' is not found or passed nothing") if @params.empty?
+
         if DEFAULTS.include?(@transform_script)
           @transform_script = "#{__dir__}/../../transform/#{@transform_script}.rb"
           className = DEFAULT_CLASS_NAME
@@ -30,12 +42,12 @@ module Fluent
 
       def call(text)
         raw_json = JSON.parse(text)
-        return nil, @transformer.transform(raw_json)
+        return nil, @transformer.transform(raw_json, @params)
       end
 
       def parse(text)
         raw_json = JSON.parse(text)
-        return nil, @transformer.transform(raw_json)
+        return nil, @transformer.transform(raw_json, @params)
       end
     end
   register_template("json_transform_ex", Proc.new { JSONTransformParser.new })

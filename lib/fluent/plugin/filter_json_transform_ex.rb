@@ -13,6 +13,18 @@ module Fluent
     def configure(conf)
       @transform_script = conf['transform_script']
 
+      @params = {}
+      $log.info("Searching for 'params'...")
+      conf.elements.each do |element|
+        if element.name == 'params'
+          element.to_hash.each do |key, value|
+            @params[key] = value
+          end
+          $log.info("'params' section found: #{@params}") if @params.length > 0
+        end
+      end
+      $log.info("'params' is not found or passed nothing") if @params.empty?
+
       if DEFAULTS.include?(@transform_script)
         @transform_script = "#{__dir__}/../../transform/#{@transform_script}.rb"
         className = DEFAULT_CLASS_NAME
@@ -24,13 +36,15 @@ module Fluent
       require @transform_script
       begin
         @transformer = Object.const_get(className).new
+        $log.debug("#{className} class is loaded.")
       rescue NameError
         @transformer = Object.const_get(DEFAULT_CLASS_NAME).new
+        $log.debug("#{DEFAULT_CLASS_NAME} class is loaded.")
       end
     end
 
     def filter(tag, time, record)
-      return @transformer.transform(record)
+      return @transformer.transform(record, @params)
     end
   end
 end
