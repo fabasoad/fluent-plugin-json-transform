@@ -14,7 +14,7 @@ It was forker from [fluent-plugin-json-transform](https://github.com/mjourard/fl
 
 ## Installation
 ```bash
-gem install fluent-plugin-json-transform_ex --version 0.1.0
+gem install fluent-plugin-json-transform_ex --version 0.1.3
 ```
 
 ## Configuration
