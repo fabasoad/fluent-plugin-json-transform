@@ -1,6 +1,6 @@
 # JSON Transform parser plugin for Fluentd
 
-[![Build Status](https://travis-ci.org/fabasoad/fluent-plugin-json-transform_ex.svg?branch=master)](https://travis-ci.org/fabasoad/fluent-plugin-json-transform_ex) ![Gem](https://img.shields.io/gem/v/fluent-plugin-json-transform_ex)
+[![Build Status](https://travis-ci.org/fabasoad/fluent-plugin-json-transform_ex.svg?branch=master)](https://travis-ci.org/fabasoad/fluent-plugin-json-transform_ex) ![Gem](https://img.shields.io/gem/v/fluent-plugin-json-transform_ex) [![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/145HwyQAcv4vrzUumJhu7nWGAVBysX9jJH)](https://en.cryptobadges.io/donate/145HwyQAcv4vrzUumJhu7nWGAVBysX9jJH)
 
 ## Overview
 This is a [parser plugin](http://docs.fluentd.org/articles/parser-plugin-overview) for fluentd. It is **INCOMPATIBLE WITH FLUENTD v0.10.45 AND BELOW.**
