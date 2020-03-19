@@ -1,8 +1,10 @@
-# JSON Transform parser plugin for Fluentd
+# NO LONGER MAINTAINED
 
-[![Build Status](https://travis-ci.org/fabasoad/fluent-plugin-json-transform_ex.svg?branch=master)](https://travis-ci.org/fabasoad/fluent-plugin-json-transform_ex) ![Gem](https://img.shields.io/gem/v/fluent-plugin-json-transform_ex) [![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/145HwyQAcv4vrzUumJhu7nWGAVBysX9jJH)](https://en.cryptobadges.io/donate/145HwyQAcv4vrzUumJhu7nWGAVBysX9jJH)
+## JSON Transform parser plugin for Fluentd
 
-## Overview
+[![Gem Version](https://badge.fury.io/rb/fluent-plugin-json-transform_ex.svg)](https://badge.fury.io/rb/fluent-plugin-json-transform_ex)
+
+### Overview
 This is a [parser plugin](http://docs.fluentd.org/articles/parser-plugin-overview) for fluentd. It is **INCOMPATIBLE WITH FLUENTD v0.10.45 AND BELOW.**
 
 It was forker from [fluent-plugin-json-transform](https://github.com/mjourard/fluent-plugin-json-transform) plugin and has the following fixes:
@@ -14,12 +16,12 @@ It was forker from [fluent-plugin-json-transform](https://github.com/mjourard/fl
 
 - Adding `params` section with key-value pairs which can be passed to user script for usage.
 
-## Installation
+### Installation
 ```bash
 gem install fluent-plugin-json-transform_ex --version 0.1.3
 ```
 
-## Configuration
+### Configuration
 ```
 <source>
   type [tail|tcp|udp|syslog|http] # or a custom input type which accepts the "format" parameter
@@ -40,7 +42,7 @@ gem install fluent-plugin-json-transform_ex --version 0.1.3
 
 `class_name`: [optional] ignored if not using `custom` script. Define name of a class which is used for transformation in `script_path` script.
 
-### Flatten script
+#### Flatten script
 Flattens nested JSON by concatenating nested keys with '.'. Example:
 
 ```
@@ -67,7 +69,7 @@ Becomes
 }
 ```
 
-### Filter Option
+#### Filter Option
 If you want to flatten your json after doing other parsing from the original source log.
 ```
 <filter pattern>
@@ -82,8 +84,7 @@ If you want to flatten your json after doing other parsing from the original sou
 </filter>
 ```
 
-
-## Implementing transformer class
+### Implementing transformer class
 
 The transformer class should have an instance method `transform` which takes a Ruby hash and returns a Ruby hash. Pay attention that the name of a class should be the same as you defined in `class_name` parameter or `JSONTransformer` in case `class_name` parameter is not defined:
 
